@@ -27,7 +27,7 @@ function SidebarOption({ Icon, title, addChannelOption, id }) {
     <SidebarOptionContainer
       onClick={addChannelOption ? addChannel : selectChannel}
     >
-      {Icon && <Icon style={{ paddin: 10 }} />}
+      {Icon && <Icon />}
       {Icon ? (
         <h3>{title}</h3>
       ) : (
@@ -55,7 +55,7 @@ const SidebarOptionContainer = styled.div`
   }
 
   > h3 {
-    margin-left: 15px;
+    margin-left: 20px;
     font-weight: 500;
   }
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import SidebarOption from "./SidebarOption";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
 //icons
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
@@ -17,18 +17,20 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Sidebar() {
   const [channels] = useCollection(db.collection("rooms"));
-  console.log(channels);
+  const [user] = useAuthState(auth);
+
   return (
     <SidebarContainer>
       <SidebarHeader>
         <SidebarInfo>
-          <h2>Mugiwara Luffy</h2>
+          <h2> {user?.displayName}</h2>
           <h3>
             <FiberManualRecordIcon />
-            strawhat@pirates.com
+            {user?.email}
           </h3>
         </SidebarInfo>
         <CreateIcon />
